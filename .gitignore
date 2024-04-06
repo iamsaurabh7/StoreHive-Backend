@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.log
+build/
+dist/
+.vscode/
+.DS_Store
+.idea/
+package-lock.json
+yarn.lock
+Notes.txt
