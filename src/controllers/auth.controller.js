@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/user.model");
 const { JWT_SECRET_KEY, JWT_REFRESH_SECRET_KEY } = require("../config/keys");
-const authService = require("../services/authService");
+const authService = require("../services/auth.service");
 
 exports.signin = async (req, res) => {
   const { email, password } = req.body;

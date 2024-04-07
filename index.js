@@ -2,9 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const authRoutes = require("./src/routes/authRoutes");
-const productRoutes = require("./src/routes/productRoutes");
-const cartRoutes = require("./src/routes/cartRoutes");
+const authRoutes = require("./src/routes/auth.routes");
+const productRoutes = require("./src/routes/product.routes");
+const cartRoutes = require("./src/routes/cart.routes");
 const mongodbUrl = process.env.MONGODB_URL;
 const port = process.env.PORT || 3000;
 
