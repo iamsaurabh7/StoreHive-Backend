@@ -1,36 +1,100 @@
-// login end point
+//////////// auth endpoints ////////////
 
+// login end point
+//POST
 http://localhost:3000/auth/login
+body - json format
 {
     "email":"abc@gmail.com",
     "password":"123"
 }
 
+response / output
+{
+    "userName": "abc",
+    "id": "65eec814e4f63c313d9ae4f3",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVjODE0ZTRmNjNjMzEzZDlhZTRmMyIsIm5hbWUiOiJhYmMiLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJhZ2UiOjI1LCJpYXQiOjE3MTM1MTEyMzUsImV4cCI6MTcxMzY4NDAzNX0.g-PZeDTuLD9XfbBxpQDG6_tIIdEnkA1czOWGMI1_3-s",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVjODE0ZTRmNjNjMzEzZDlhZTRmMyIsIm5hbWUiOiJhYmMiLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJhZ2UiOjI1LCJpYXQiOjE3MTM1MTEyMzUsImV4cCI6MTcxNDExNjAzNX0.hVFNYft58mzJi9PtAjewgeClvQtDiaSLswEM0B-UT0s",
+    "message": "Signin successful"
+}
+
 ---------------------------------------------------------------------------
 
 //  signup end point
-
+//POST
 http://localhost:3000/auth/signup
+body - json format
 {
     "email":"abcde@gmail.com",
     "password":"123",
     "name":"abcde"
 }
 
+response/output
+signup successful
+
 ---------------------------------------------------------------------------
 
 //  refresh token endpoint
-
+//POST
 http://localhost:3000/auth/refresh
 Headers - authorization : refreshToken
 
+response/output
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVjODE0ZTRmNjNjMzEzZDlhZTRmMyIsIm5hbWUiOiJhYmMiLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJhZ2UiOjI1LCJpYXQiOjE3MTM1MTEzNjIsImV4cCI6MTcxNDExNjE2Mn0.z52awRvLc5qyDnrlSbudCRtaCPRL9UK2BDLiJIyzH2M"
+}
 ---------------------------------------------------------------------------
 
 //  products endpoint
-
+//GET
 http://localhost:3000/products
+response/output
+[
+    {
+        "_id": "65a851c47f1c81c810c8a679",
+        "name": "Tomatoes - Grape",
+        "description": "Nullam molestie nibh in lectus.",
+        "image": "http://dummyimage.com/204x100.png/dddddd/000000",
+        "price": 797,
+        "quantity": 47
+    },
+    {
+        "_id": "65a851c47f1c81c810c8a67a",
+        "name": "Flour - Buckwheat, Dark",
+        "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
+        "image": "http://dummyimage.com/190x100.png/ff4444/ffffff",
+        "price": 12,
+        "quantity": 79
+    },
+    {
+        "_id": "65a851c47f1c81c810c8a67c",
+        "name": "Onions - Pearl",
+        "description": "Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
+        "image": "http://dummyimage.com/104x100.png/5fa2dd/ffffff",
+        "price": 7,
+        "quantity": 98
+    },
+    {
+        "_id": "65a851c47f1c81c810c8a681",
+        "name": "Mangoes",
+        "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.",
+        "image": "http://dummyimage.com/142x100.png/ff4444/ffffff",
+        "price": 4,
+        "quantity": 38
+    },
+    {
+        "_id": "65a851c47f1c81c810c8a682",
+        "name": "Shrimp - Black Tiger 13/15",
+        "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+        "image": "http://dummyimage.com/189x100.png/cc0000/ffffff",
+        "price": 927,
+        "quantity": 58
+    }
+]
 
----------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //////////// cart endpoints ////////////
 
@@ -38,25 +102,65 @@ cart endpoint /GET
 
 http://localhost:3000/cart
 Headers - authorization : token
-
-
+response/output
+[
+    {
+        "_id": "66110c0393d7235c6864d2ed",
+        "product": {
+            "_id": "65a851c47f1c81c810c8a679",
+            "name": "Tomatoes - Grape",
+            "description": "Nullam molestie nibh in lectus.",
+            "image": "http://dummyimage.com/204x100.png/dddddd/000000",
+            "price": 797,
+            "quantity": 47
+        },
+        "user": "65eec814e4f63c313d9ae4f3",
+        "quantity": 2,
+        "__v": 0
+    }
+]
+----------------------------------------------------
 add item to cart /POST
 
 http://localhost:3000/cart
 {
-    "product":"65a851c47f1c81c810c8a679",
+    "product":"65a851c47f1c81c810c8a682",
     "quantity":1
 }
 Headers - authorization : token
 
+response/output
+{
+    "product": "65a851c47f1c81c810c8a682",
+    "user": "65eec814e4f63c313d9ae4f3",
+    "quantity": 1,
+    "_id": "66221d067c808ce79f190737",
+    "__v": 0
+}
+-----------------------------
 
 //  edit cart item quantity / PATCH  //
 
 http://localhost:3000/cart
 Headers - authorization : token
 {
-    "product":"65a851c47f1c81c810c8a679",
+    "product":"65a851c47f1c81c810c8a682",
     "quantity":2
+}
+response/output
+{
+    "_id": "66221d067c808ce79f190737",
+    "product": {
+        "_id": "65a851c47f1c81c810c8a682",
+        "name": "Shrimp - Black Tiger 13/15",
+        "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+        "image": "http://dummyimage.com/189x100.png/cc0000/ffffff",
+        "price": 927,
+        "quantity": 58
+    },
+    "user": "65eec814e4f63c313d9ae4f3",
+    "quantity": 2,
+    "__v": 0
 }
 
 
@@ -65,7 +169,22 @@ Headers - authorization : token
 {
     "product":"65a851c47f1c81c810c8a679"
 }
-
+response/output
+{
+    "_id": "66110c0393d7235c6864d2ed",
+    "product": {
+        "_id": "65a851c47f1c81c810c8a679",
+        "name": "Tomatoes - Grape",
+        "description": "Nullam molestie nibh in lectus.",
+        "image": "http://dummyimage.com/204x100.png/dddddd/000000",
+        "price": 797,
+        "quantity": 47
+    },
+    "user": "65eec814e4f63c313d9ae4f3",
+    "quantity": 2,
+    "__v": 0
+}
+returning details of item which got deleted
 
 
 

@@ -64,7 +64,7 @@ exports.refreshToken = async (refreshToken) => {
           age: verification.age,
         },
         JWT_SECRET_KEY,
-        { expiresIn: "2 hours" }
+        { expiresIn: "7 days" }
       );
       return { token: newToken };
     }
