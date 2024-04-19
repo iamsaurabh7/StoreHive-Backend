@@ -156,9 +156,7 @@ Welcome to the StoreHive Backend API documentation. This guide provides detailed
         "_id": "65a851c47f1c81c810c8a682",
         "name": "Shrimp - Black Tiger 13/15",
         "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-        "image": "http://dummy
-
-image.com/189x100.png/cc0000/ffffff",
+        "image": "http://dummyimage.com/189x100.png/cc0000/ffffff",
         "price": 927,
         "quantity": 58
     },
