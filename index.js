@@ -3,24 +3,30 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./src/routes/auth.routes");
-const productRoutes = require("./src/routes/product.routes");
+const productsRoutes = require("./src/routes/products.routes");
 const cartRoutes = require("./src/routes/cart.routes");
-const mongodbUrl = process.env.MONGODB_URL;
-const port = process.env.PORT || 3000;
 
 const app = express();
+
+const MONGODB_URI = process.env.MONGODB_URL;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(mongodbUrl).then(() => {
-  console.log("database connected");
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => {
+    console.log("database connected");
 
-  app.use("/auth", authRoutes);
-  app.use("/products", productRoutes);
-  app.use("/cart", cartRoutes);
+    app.use("/auth", authRoutes);
+    app.use("/products", productsRoutes);
+    app.use("/cart", cartRoutes);
 
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("MongoDB connection error:", error);
   });
-});
