@@ -19,6 +19,10 @@ mongoose
   .then(() => {
     console.log("database connected");
 
+    app.get("/", (req, res) => {
+      res.send("Hello StoreHive");
+    });
+
     app.use("/auth", authRoutes);
     app.use("/products", productsRoutes);
     app.use("/cart", cartRoutes);
